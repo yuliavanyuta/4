@@ -2,7 +2,6 @@ import tkinter as tk
 import string
 import secrets
 import random
-from tkinter.ttk import *
 
 # начинаю с описания команды главной кнопки всей программы (генерация ключа)
 def keyc():
@@ -11,7 +10,7 @@ def keyc():
     digits: str = string.digits
     letters: str = string.ascii_uppercase
 # задаю условия (по варианту нужны блоки, где будет ровно 2 цифры и 3 буквы) и генерирую сами блоки ключа 
-# (делаю это три раза для трёх блоков соответственно)
+# (делаю это три раза для трёх блоков соответственно, отдельно, чтобы точно работало как надо)
     a: str = ''.join(secrets.choice(digits) for x in range(2))
     b: str = ''.join(secrets.choice(letters) for x in range(3))
     key1 = a + b
@@ -51,14 +50,14 @@ window.title("Генерация ключа для геншина")
 window.geometry('758x559')
 window.config(bg="sky blue")
 bg = tk.PhotoImage(file="C:/Users/Admin/PycharmProjects/pythonProject4/лаборатор/fischlnew.png")
+# картинка только так у меня выносится, без точного адреса компилятор её не находит, я пробовала разными способами
 
 # две функции кнопок старта и немедленного выхода
 def start():
     start_button.place_forget()
-    start_cmon = Label(window, image=bg)
+    start_cmon = tk.Label(window, image=bg)
     start_cmon.place(x=0, y=0)
-    genshin_button = Button(window, text="Сгенерировать ключ", command=keyc, padding=2, width=20)
-    genshin_button.config()
+    genshin_button = tk.Button(window, text="Сгенерировать ключ", command=keyc, padding=2, width=20)
     genshin_button.place(x=310, y=450)
 
 
@@ -66,12 +65,10 @@ def quit():
     window.destroy()
 
 # прописываю сами кнопки (внешний вид и расположение)
-start_button = Button(window, text="Начать", command=start, width=10, padding=2)
-start_button.config()
+start_button = tk.Button(window, text="Начать", command=start, width=10, padding=2)
 start_button.place(x=290, y=450)
 
-quit_button = Button(window, text="Выйти", command=quit, width=10, padding=2)
-quit_button.config()
+quit_button = tk.Button(window, text="Выйти", command=quit, width=10, padding=2)
 quit_button.place(x=375, y=450)
 
 # можно запускать
